@@ -4,10 +4,10 @@ import ReactDOM from 'react-dom';
 import App from './components/app/app.jsx';
 
 const Settings = {
-  ERRORS_COUNT: 3
+  ERRORS_COUNT_MAX: 3
 };
 
 ReactDOM.render(
-    <App errorsCount={Settings.ERRORS_COUNT}/>,
+    <App errorsCount={Settings.ERRORS_COUNT_MAX}/>,
     document.getElementById(`root`)
 );
