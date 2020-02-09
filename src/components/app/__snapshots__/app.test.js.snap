@@ -16,6 +16,7 @@ exports[`Компонент App должен отрендериться корр
   </div>
   <button
     className="welcome__button"
+    onClick={[Function]}
   >
     <span
       className="visually-hidden"

@@ -7,7 +7,12 @@ const ERRORS_COUNT_MAX = 3;
 
 it(`Компонент WelcomeScreen должен отрендериться корректно`, () => {
   const tree = renderer
-    .create(<WelcomeScreen errorsCount={ERRORS_COUNT_MAX}/>)
+    .create(
+        <WelcomeScreen
+          errorsCount={ERRORS_COUNT_MAX}
+          onStartGameButtonClick={() => {}}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
