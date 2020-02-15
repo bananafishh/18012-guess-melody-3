@@ -3,11 +3,16 @@ import ReactDOM from 'react-dom';
 
 import App from './components/app/app.jsx';
 
+import questions from './mocks/questions.js';
+
 const Settings = {
   ERRORS_COUNT_MAX: 3
 };
 
 ReactDOM.render(
-    <App errorsCount={Settings.ERRORS_COUNT_MAX}/>,
+    <App
+      errorsCount={Settings.ERRORS_COUNT_MAX}
+      questions={questions}
+    />,
     document.getElementById(`root`)
 );
