@@ -9,7 +9,7 @@ import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
 const startGameButtonClickHandler = () => {};
 
 const App = (props) => {
-  const {errorsCount} = props;
+  const {errorsCount, questions} = props;
 
   return (
     <Router>
@@ -22,7 +22,7 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/guess-singer">
-          <GuessSingerScreen/>
+          <GuessSingerScreen question={questions[0]}/>
         </Route>
 
         <Route exact path="/guess-genre">
@@ -34,7 +34,8 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired
+  errorsCount: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
 };
 
 export default App;
