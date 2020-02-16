@@ -26,7 +26,7 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/guess-genre">
-          <GuessGenreScreen/>
+          <GuessGenreScreen question={questions[1]}/>
         </Route>
       </Switch>
     </Router>
