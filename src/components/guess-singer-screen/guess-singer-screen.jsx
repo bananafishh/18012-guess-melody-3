@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const GuessSingerScreen = (props) => {
-  const {question} = props;
+  const {question, onAnswer} = props;
   const {song, answers} = question;
 
   return (
@@ -56,6 +56,7 @@ const GuessSingerScreen = (props) => {
                 name="answer"
                 value={`artist-${i}`}
                 id={`answer-${i}`}
+                onChange={() => onAnswer(question, answer)}
               />
 
               <label className="artist__name" htmlFor={`answer-${i}`}>
@@ -71,6 +72,7 @@ const GuessSingerScreen = (props) => {
 };
 
 GuessSingerScreen.propTypes = {
+  onAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     song: PropTypes.shape({
       singer: PropTypes.string.isRequired,
@@ -80,7 +82,7 @@ GuessSingerScreen.propTypes = {
       singer: PropTypes.string.isRequired,
       picture: PropTypes.string.isRequired,
     })).isRequired,
-  })
+  }),
 };
 
 export default GuessSingerScreen;
