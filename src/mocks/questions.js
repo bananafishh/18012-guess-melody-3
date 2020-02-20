@@ -1,9 +1,4 @@
-import React from 'react';
-import renderer from 'react-test-renderer';
-
-import App from './app.jsx';
-
-const questions = [
+export default [
   {
     type: `singer`,
     song: {
@@ -13,15 +8,15 @@ const questions = [
     answers: [
       {
         singer: `X Ambassadors`,
-        picture: `${`https://api.adorable.io/avatars/128`}/1}`,
+        picture: `${`https://api.adorable.io/avatars/128`}/${Math.random()}`,
       },
       {
         singer: `Bastille`,
-        picture: `${`https://api.adorable.io/avatars/128`}/2}`,
+        picture: `${`https://api.adorable.io/avatars/128`}/${Math.random()}`,
       },
       {
         singer: `Imagine Dragons`,
-        picture: `${`https://api.adorable.io/avatars/128`}/3}`,
+        picture: `${`https://api.adorable.io/avatars/128`}/${Math.random()}`,
       },
     ],
   },
@@ -48,15 +43,3 @@ const questions = [
     ],
   },
 ];
-
-
-it(`Компонент App должен отрендериться корректно`, () => {
-  const tree = renderer
-    .create(<App
-      errorsCount={3}
-      questions={questions}
-    />)
-    .toJSON();
-
-  expect(tree).toMatchSnapshot();
-});
