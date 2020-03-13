@@ -5,6 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {GameType} from '../../constants.js';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
+import GameScreen from '../game-screen/game-screen.jsx';
 import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen.jsx';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
 
@@ -51,18 +52,22 @@ class App extends PureComponent {
       switch (question.type) {
         case GameType.GUESS_ARTIST:
           return (
-            <GuessArtistScreen
-              question={question}
-              onAnswer={this.handleGuessArtistAnswer}
-            />
+            <GameScreen type={question.type}>
+              <GuessArtistScreen
+                question={question}
+                onAnswer={this.handleGuessArtistAnswer}
+              />
+            </GameScreen>
           );
 
         case GameType.GUESS_GENRE:
           return (
-            <GuessGenreScreen
-              question={question}
-              onAnswer={this.handleGuessGenreAnswer}
-            />
+            <GameScreen type={question.type}>
+              <GuessGenreScreen
+                question={question}
+                onAnswer={this.handleGuessGenreAnswer}
+              />
+            </GameScreen>
           );
 
         default:
@@ -84,17 +89,21 @@ class App extends PureComponent {
           </Route>
 
           <Route exact path="/guess-artist">
-            <GuessArtistScreen
-              question={questions[0]}
-              onAnswer={() => {}}
-            />
+            <GameScreen type={questions[0].type}>
+              <GuessArtistScreen
+                question={questions[0]}
+                onAnswer={() => {}}
+              />
+            </GameScreen>
           </Route>
 
           <Route exact path="/guess-genre">
-            <GuessGenreScreen
-              question={questions[1]}
-              onAnswer={() => {}}
-            />
+            <GameScreen type={questions[1].type}>
+              <GuessGenreScreen
+                question={questions[1]}
+                onAnswer={() => {}}
+              />
+            </GameScreen>
           </Route>
         </Switch>
       </Router>
