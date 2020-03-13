@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Компонент GuessSingerScreen рендерится корректно 1`] = `
+exports[`Компонент GuessArtistScreen рендерится корректно 1`] = `
 <section
   className="game game--artist"
 >

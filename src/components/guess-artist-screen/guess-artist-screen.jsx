@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const GuessSingerScreen = (props) => {
+const GuessArtistScreen = (props) => {
   const {question, onAnswer} = props;
   const {song, answers} = question;
 
@@ -71,7 +71,7 @@ const GuessSingerScreen = (props) => {
   );
 };
 
-GuessSingerScreen.propTypes = {
+GuessArtistScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     song: PropTypes.shape({
@@ -85,4 +85,4 @@ GuessSingerScreen.propTypes = {
   }),
 };
 
-export default GuessSingerScreen;
+export default GuessArtistScreen;

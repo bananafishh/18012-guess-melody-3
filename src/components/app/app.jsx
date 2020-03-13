@@ -5,7 +5,7 @@ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import {GameType} from '../../constants.js';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-import GuessSingerScreen from '../guess-singer-screen/guess-singer-screen.jsx';
+import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen.jsx';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
 
 class App extends PureComponent {
@@ -17,7 +17,7 @@ class App extends PureComponent {
     };
 
     this.handleStartGameButtonClick = this.handleStartGameButtonClick.bind(this);
-    this.handleGuessSingerAnswer = this.handleGuessSingerAnswer.bind(this);
+    this.handleGuessArtistAnswer = this.handleGuessArtistAnswer.bind(this);
     this.handleGuessGenreAnswer = this.handleGuessGenreAnswer.bind(this);
   }
 
@@ -25,7 +25,7 @@ class App extends PureComponent {
     this.setState({step: 0});
   }
 
-  handleGuessSingerAnswer() {
+  handleGuessArtistAnswer() {
     this.setState((prevState) => ({step: prevState.step + 1}));
   }
 
@@ -51,9 +51,9 @@ class App extends PureComponent {
       switch (question.type) {
         case GameType.GUESS_SINGER:
           return (
-            <GuessSingerScreen
+            <GuessArtistScreen
               question={question}
-              onAnswer={this.handleGuessSingerAnswer}
+              onAnswer={this.handleGuessArtistAnswer}
             />
           );
 
@@ -83,8 +83,8 @@ class App extends PureComponent {
             {this.showGameScreen()}
           </Route>
 
-          <Route exact path="/guess-singer">
-            <GuessSingerScreen
+          <Route exact path="/guess-artist">
+            <GuessArtistScreen
               question={questions[0]}
               onAnswer={() => {}}
             />

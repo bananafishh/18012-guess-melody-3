@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import GuessSingerScreen from './guess-singer-screen.jsx';
+import GuessArtistScreen from './guess-artist-screen.jsx';
 
 const question = {
   type: `singer`,
@@ -25,9 +25,9 @@ const question = {
   ],
 };
 
-it(`Компонент GuessSingerScreen рендерится корректно`, () => {
+it(`Компонент GuessArtistScreen рендерится корректно`, () => {
   const tree = renderer
-    .create(<GuessSingerScreen
+    .create(<GuessArtistScreen
       question={question}
       onAnswer={() => {}}
     />)

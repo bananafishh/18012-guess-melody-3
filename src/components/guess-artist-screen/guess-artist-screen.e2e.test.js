@@ -2,7 +2,7 @@ import React from 'react';
 import {configure, shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import GuessSingerScreen from './guess-singer-screen.jsx';
+import GuessArtistScreen from './guess-artist-screen.jsx';
 
 configure({adapter: new Adapter()});
 
@@ -34,17 +34,17 @@ const playerAnswer = {
 };
 
 it(`При выборе исполнителя вызывается коллбэк, в который передаются вопрос и выбранный ответ`, () => {
-  const handleGuessSingerAnswer = jest.fn();
+  const handleGuessArtistAnswer = jest.fn();
 
-  const guessSingerScreen = shallow(<GuessSingerScreen
-    onAnswer={handleGuessSingerAnswer}
+  const guessArtistScreen = shallow(<GuessArtistScreen
+    onAnswer={handleGuessArtistAnswer}
     question={question}
   />);
 
-  const answerInput = guessSingerScreen.find(`input`).at(0);
+  const answerInput = guessArtistScreen.find(`input`).at(0);
   answerInput.simulate(`change`);
 
-  expect(handleGuessSingerAnswer).toHaveBeenCalledTimes(1);
-  expect(handleGuessSingerAnswer.mock.calls[0][0]).toMatchObject(question);
-  expect(handleGuessSingerAnswer.mock.calls[0][1]).toMatchObject(playerAnswer);
+  expect(handleGuessArtistAnswer).toHaveBeenCalledTimes(1);
+  expect(handleGuessArtistAnswer.mock.calls[0][0]).toMatchObject(question);
+  expect(handleGuessArtistAnswer.mock.calls[0][1]).toMatchObject(playerAnswer);
 });
