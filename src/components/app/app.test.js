@@ -13,15 +13,15 @@ const questions = [
     answers: [
       {
         singer: `X Ambassadors`,
-        picture: `${`https://api.adorable.io/avatars/128`}/1}`,
+        picture: `https://api.adorable.io/avatars/128/1`,
       },
       {
         singer: `Bastille`,
-        picture: `${`https://api.adorable.io/avatars/128`}/2}`,
+        picture: `https://api.adorable.io/avatars/128/2`,
       },
       {
         singer: `Imagine Dragons`,
-        picture: `${`https://api.adorable.io/avatars/128`}/3}`,
+        picture: `https://api.adorable.io/avatars/128/3`,
       },
     ],
   },
