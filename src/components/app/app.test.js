@@ -5,22 +5,22 @@ import App from './app.jsx';
 
 const questions = [
   {
-    type: `singer`,
+    type: `artist`,
     song: {
-      singer: `X Ambassadors`,
+      artist: `X Ambassadors`,
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
     answers: [
       {
-        singer: `X Ambassadors`,
+        artist: `X Ambassadors`,
         picture: `https://api.adorable.io/avatars/128/1`,
       },
       {
-        singer: `Bastille`,
+        artist: `Bastille`,
         picture: `https://api.adorable.io/avatars/128/2`,
       },
       {
-        singer: `Imagine Dragons`,
+        artist: `Imagine Dragons`,
         picture: `https://api.adorable.io/avatars/128/3`,
       },
     ],

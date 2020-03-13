@@ -1,4 +1,4 @@
 export const GameType = {
-  GUESS_SINGER: `singer`,
+  GUESS_ARTIST: `artist`,
   GUESS_GENRE: `genre`,
 };

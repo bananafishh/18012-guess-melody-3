@@ -49,7 +49,7 @@ const GuessArtistScreen = (props) => {
 
         <form className="game__artist">
           {answers.map((answer, i) => (
-            <div key={answer.singer} className="artist">
+            <div key={answer.artist} className="artist">
               <input
                 className="artist__input visually-hidden"
                 type="radio"
@@ -60,8 +60,8 @@ const GuessArtistScreen = (props) => {
               />
 
               <label className="artist__name" htmlFor={`answer-${i}`}>
-                <img className="artist__picture" src={answer.picture} alt={answer.singer}/>
-                {answer.singer}
+                <img className="artist__picture" src={answer.picture} alt={answer.artist}/>
+                {answer.artist}
               </label>
             </div>
           ))}
@@ -75,11 +75,11 @@ GuessArtistScreen.propTypes = {
   onAnswer: PropTypes.func.isRequired,
   question: PropTypes.shape({
     song: PropTypes.shape({
-      singer: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
       src: PropTypes.string.isRequired,
     }).isRequired,
     answers: PropTypes.arrayOf(PropTypes.shape({
-      singer: PropTypes.string.isRequired,
+      artist: PropTypes.string.isRequired,
       picture: PropTypes.string.isRequired,
     })).isRequired,
   }),

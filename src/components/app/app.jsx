@@ -49,7 +49,7 @@ class App extends PureComponent {
 
     if (question) {
       switch (question.type) {
-        case GameType.GUESS_SINGER:
+        case GameType.GUESS_ARTIST:
           return (
             <GuessArtistScreen
               question={question}
