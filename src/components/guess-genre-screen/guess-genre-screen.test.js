@@ -32,6 +32,7 @@ it(`Компонент GuessGenreScreen рендерится корректно`
         <GuessGenreScreen
           question={question}
           onAnswer={() => {}}
+          renderAudioPlayer={() => {}}
         />,
         {createNodeMock: () => ({})}
     )

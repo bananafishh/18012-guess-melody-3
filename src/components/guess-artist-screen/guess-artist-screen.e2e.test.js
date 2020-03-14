@@ -36,10 +36,13 @@ const playerAnswer = {
 it(`При выборе исполнителя вызывается коллбэк, в который передаются вопрос и выбранный ответ`, () => {
   const handleGuessArtistAnswer = jest.fn();
 
-  const guessArtistScreen = shallow(<GuessArtistScreen
-    onAnswer={handleGuessArtistAnswer}
-    question={question}
-  />);
+  const guessArtistScreen = shallow(
+      <GuessArtistScreen
+        onAnswer={handleGuessArtistAnswer}
+        question={question}
+        renderAudioPlayer={() => {}}
+      />
+  );
 
   const answerInput = guessArtistScreen.find(`input`).at(0);
   answerInput.simulate(`change`);

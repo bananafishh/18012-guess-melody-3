@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import {GameType} from '../../constants.js';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
 import GameScreen from '../game-screen/game-screen.jsx';
 import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen.jsx';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
+
+const GuessArtistScreenWrapped = withActivePlayer(GuessArtistScreen);
+const GuessGenreScreenWrapped = withActivePlayer(GuessGenreScreen);
 
 class App extends PureComponent {
   constructor(props) {
@@ -53,7 +57,7 @@ class App extends PureComponent {
         case GameType.GUESS_ARTIST:
           return (
             <GameScreen type={question.type}>
-              <GuessArtistScreen
+              <GuessArtistScreenWrapped
                 question={question}
                 onAnswer={this.handleGuessArtistAnswer}
               />
@@ -63,7 +67,7 @@ class App extends PureComponent {
         case GameType.GUESS_GENRE:
           return (
             <GameScreen type={question.type}>
-              <GuessGenreScreen
+              <GuessGenreScreenWrapped
                 question={question}
                 onAnswer={this.handleGuessGenreAnswer}
               />
@@ -90,7 +94,7 @@ class App extends PureComponent {
 
           <Route exact path="/guess-artist">
             <GameScreen type={questions[0].type}>
-              <GuessArtistScreen
+              <GuessArtistScreenWrapped
                 question={questions[0]}
                 onAnswer={() => {}}
               />
@@ -99,7 +103,7 @@ class App extends PureComponent {
 
           <Route exact path="/guess-genre">
             <GameScreen type={questions[1].type}>
-              <GuessGenreScreen
+              <GuessGenreScreenWrapped
                 question={questions[1]}
                 onAnswer={() => {}}
               />

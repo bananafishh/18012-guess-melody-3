@@ -1,27 +1,18 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-import AudioPlayer from '../audio-player/audio-player.jsx';
-
 class GuessArtistScreen extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isTrackPlaying: true,
-    };
-
-    this.handleAudioPlayerButtonClick = this.handleAudioPlayerButtonClick.bind(this);
-  }
-
-  handleAudioPlayerButtonClick() {
-    this.setState((prevState) => ({isTrackPlaying: !prevState.isTrackPlaying}));
-  }
-
   render() {
-    const {question, onAnswer} = this.props;
-    const {song, answers} = question;
-    const {isTrackPlaying} = this.state;
+    const {
+      question,
+      onAnswer,
+      renderAudioPlayer,
+    } = this.props;
+
+    const {
+      song,
+      answers,
+    } = question;
 
     return (
       <section className="game__screen">
@@ -29,11 +20,7 @@ class GuessArtistScreen extends PureComponent {
 
         <div className="game__track">
           <div className="track">
-            <AudioPlayer
-              src={song.src}
-              isPlaying={isTrackPlaying}
-              onPlayButtonClick={this.handleAudioPlayerButtonClick}
-            />
+            {renderAudioPlayer(song.src, 0)}
           </div>
         </div>
 
@@ -73,6 +60,7 @@ GuessArtistScreen.propTypes = {
       picture: PropTypes.string.isRequired,
     })).isRequired,
   }),
+  renderAudioPlayer: PropTypes.func.isRequired,
 };
 
 export default GuessArtistScreen;

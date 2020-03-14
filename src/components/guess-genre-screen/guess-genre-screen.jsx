@@ -1,18 +1,13 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 
-import AudioPlayer from '../audio-player/audio-player.jsx';
-
 class GuessGenreScreen extends PureComponent {
   constructor(props) {
     super(props);
 
     this.state = {
-      activePlayer: 0,
       playerAnswers: [false, false, false, false],
     };
-
-    this.handleAudioPlayerButtonClick = this.handleAudioPlayerButtonClick.bind(this);
   }
 
   handleAnswerChange(event, answerIndex) {
@@ -33,16 +28,18 @@ class GuessGenreScreen extends PureComponent {
     this.props.onAnswer(question, this.state.playerAnswers);
   }
 
-  handleAudioPlayerButtonClick(activePlayerIndex) {
-    this.setState((prevState) => ({
-      activePlayer: prevState.activePlayer === activePlayerIndex ? -1 : activePlayerIndex
-    }));
-  }
-
   render() {
-    const {playerAnswers, activePlayer} = this.state;
-    const {question} = this.props;
-    const {genre, answers} = question;
+    const {
+      question,
+      renderAudioPlayer,
+    } = this.props;
+
+    const {
+      genre,
+      answers,
+    } = question;
+
+    const {playerAnswers} = this.state;
 
     return (
       <section className="game__screen">
@@ -54,11 +51,7 @@ class GuessGenreScreen extends PureComponent {
         >
           {answers.map((answer, i) => (
             <div key={`${i}-${answer.song}`} className="track">
-              <AudioPlayer
-                src={answer.song}
-                isPlaying={i === activePlayer}
-                onPlayButtonClick={() => this.handleAudioPlayerButtonClick(i)}
-              />
+              {renderAudioPlayer(answer.song, i)}
 
               <div className="game__answer">
                 <input
@@ -92,6 +85,7 @@ GuessGenreScreen.propTypes = {
       genre: PropTypes.string.isRequired,
     })).isRequired,
   }).isRequired,
+  renderAudioPlayer: PropTypes.func.isRequired,
 };
 
 export default GuessGenreScreen;
