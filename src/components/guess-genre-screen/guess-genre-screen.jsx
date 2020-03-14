@@ -8,8 +8,11 @@ class GuessGenreScreen extends PureComponent {
     super(props);
 
     this.state = {
+      activePlayer: 0,
       playerAnswers: [false, false, false, false],
     };
+
+    this.handleAudioPlayerButtonClick = this.handleAudioPlayerButtonClick.bind(this);
   }
 
   handleAnswerChange(event, answerIndex) {
@@ -30,8 +33,14 @@ class GuessGenreScreen extends PureComponent {
     this.props.onAnswer(question, this.state.playerAnswers);
   }
 
+  handleAudioPlayerButtonClick(activePlayerIndex) {
+    this.setState((prevState) => ({
+      activePlayer: prevState.activePlayer === activePlayerIndex ? -1 : activePlayerIndex
+    }));
+  }
+
   render() {
-    const {playerAnswers} = this.state;
+    const {playerAnswers, activePlayer} = this.state;
     const {question} = this.props;
     const {genre, answers} = question;
 
@@ -47,7 +56,8 @@ class GuessGenreScreen extends PureComponent {
             <div key={`${i}-${answer.song}`} className="track">
               <AudioPlayer
                 src={answer.song}
-                isPlaying={i === 0}
+                isPlaying={i === activePlayer}
+                onPlayButtonClick={() => this.handleAudioPlayerButtonClick(i)}
               />
 
               <div className="game__answer">
