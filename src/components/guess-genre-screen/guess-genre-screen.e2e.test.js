@@ -34,10 +34,13 @@ const playerAnswers = [true, false, false, false];
 it(`При выборе жанра песни вызывается коллбэк, в который передаются вопрос и выбранные ответы`, () => {
   const handleGuessGenreAnswer = jest.fn();
 
-  const guessGenreScreen = shallow(<GuessGenreScreen
-    onAnswer={handleGuessGenreAnswer}
-    question={question}
-  />);
+  const guessGenreScreen = shallow(
+      <GuessGenreScreen
+        onAnswer={handleGuessGenreAnswer}
+        question={question}
+        renderAudioPlayer={() => {}}
+      />
+  );
 
   const form = guessGenreScreen.find(`form`);
   const answerInput = guessGenreScreen.find(`input`).at(0);

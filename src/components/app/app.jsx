@@ -3,10 +3,15 @@ import PropTypes from 'prop-types';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 
 import {GameType} from '../../constants.js';
+import withActivePlayer from '../../hocs/with-active-player/with-active-player';
 
 import WelcomeScreen from '../welcome-screen/welcome-screen.jsx';
-import GuessSingerScreen from '../guess-singer-screen/guess-singer-screen.jsx';
+import GameScreen from '../game-screen/game-screen.jsx';
+import GuessArtistScreen from '../guess-artist-screen/guess-artist-screen.jsx';
 import GuessGenreScreen from '../guess-genre-screen/guess-genre-screen.jsx';
+
+const GuessArtistScreenWrapped = withActivePlayer(GuessArtistScreen);
+const GuessGenreScreenWrapped = withActivePlayer(GuessGenreScreen);
 
 class App extends PureComponent {
   constructor(props) {
@@ -17,7 +22,7 @@ class App extends PureComponent {
     };
 
     this.handleStartGameButtonClick = this.handleStartGameButtonClick.bind(this);
-    this.handleGuessSingerAnswer = this.handleGuessSingerAnswer.bind(this);
+    this.handleGuessArtistAnswer = this.handleGuessArtistAnswer.bind(this);
     this.handleGuessGenreAnswer = this.handleGuessGenreAnswer.bind(this);
   }
 
@@ -25,7 +30,7 @@ class App extends PureComponent {
     this.setState({step: 0});
   }
 
-  handleGuessSingerAnswer() {
+  handleGuessArtistAnswer() {
     this.setState((prevState) => ({step: prevState.step + 1}));
   }
 
@@ -49,20 +54,24 @@ class App extends PureComponent {
 
     if (question) {
       switch (question.type) {
-        case GameType.GUESS_SINGER:
+        case GameType.GUESS_ARTIST:
           return (
-            <GuessSingerScreen
-              question={question}
-              onAnswer={this.handleGuessSingerAnswer}
-            />
+            <GameScreen type={question.type}>
+              <GuessArtistScreenWrapped
+                question={question}
+                onAnswer={this.handleGuessArtistAnswer}
+              />
+            </GameScreen>
           );
 
         case GameType.GUESS_GENRE:
           return (
-            <GuessGenreScreen
-              question={question}
-              onAnswer={this.handleGuessGenreAnswer}
-            />
+            <GameScreen type={question.type}>
+              <GuessGenreScreenWrapped
+                question={question}
+                onAnswer={this.handleGuessGenreAnswer}
+              />
+            </GameScreen>
           );
 
         default:
@@ -83,18 +92,22 @@ class App extends PureComponent {
             {this.showGameScreen()}
           </Route>
 
-          <Route exact path="/guess-singer">
-            <GuessSingerScreen
-              question={questions[0]}
-              onAnswer={() => {}}
-            />
+          <Route exact path="/guess-artist">
+            <GameScreen type={questions[0].type}>
+              <GuessArtistScreenWrapped
+                question={questions[0]}
+                onAnswer={() => {}}
+              />
+            </GameScreen>
           </Route>
 
           <Route exact path="/guess-genre">
-            <GuessGenreScreen
-              question={questions[1]}
-              onAnswer={() => {}}
-            />
+            <GameScreen type={questions[1].type}>
+              <GuessGenreScreenWrapped
+                question={questions[1]}
+                onAnswer={() => {}}
+              />
+            </GameScreen>
           </Route>
         </Switch>
       </Router>

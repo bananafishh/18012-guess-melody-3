@@ -1,22 +1,22 @@
 export default [
   {
-    type: `singer`,
+    type: `artist`,
     song: {
-      singer: `X Ambassadors`,
+      artist: `X Ambassadors`,
       src: `https://upload.wikimedia.org/wikipedia/commons/4/4e/BWV_543-fugue.ogg`,
     },
     answers: [
       {
-        singer: `X Ambassadors`,
-        picture: `${`https://api.adorable.io/avatars/128`}/${Math.random()}`,
+        artist: `X Ambassadors`,
+        picture: `https://api.adorable.io/avatars/128/${Math.random()}`,
       },
       {
-        singer: `Bastille`,
-        picture: `${`https://api.adorable.io/avatars/128`}/${Math.random()}`,
+        artist: `Bastille`,
+        picture: `https://api.adorable.io/avatars/128/${Math.random()}`,
       },
       {
-        singer: `Imagine Dragons`,
-        picture: `${`https://api.adorable.io/avatars/128`}/${Math.random()}`,
+        artist: `Imagine Dragons`,
+        picture: `https://api.adorable.io/avatars/128/${Math.random()}`,
       },
     ],
   },
