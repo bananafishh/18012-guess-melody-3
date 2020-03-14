@@ -11,7 +11,8 @@ it(`Компонент «AudioPlayer» рендерится корректно`,
         <AudioPlayer
           src={song}
           isPlaying={false}
-        />
+        />,
+        {createNodeMock: () => ({})}
     )
     .toJSON();
 

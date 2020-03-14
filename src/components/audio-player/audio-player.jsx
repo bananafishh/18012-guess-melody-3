@@ -1,9 +1,11 @@
-import React, {PureComponent} from 'react';
+import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 
 class AudioPlayer extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.audioRef = createRef();
 
     this.state = {
       isPlaying: props.isPlaying,
@@ -16,28 +18,31 @@ class AudioPlayer extends PureComponent {
   componentDidMount() {
     const {src} = this.props;
 
-    this.audio = new Audio(src);
+    const audio = this.audioRef.current;
 
-    this.audio.oncanplaythrough = () => this.setState({isTrackLoading: false});
-
-    this.audio.onpause = () => this.setState({isPlaying: false});
+    audio.src = src;
+    audio.oncanplaythrough = () => this.setState({isTrackLoading: false});
+    audio.onpause = () => this.setState({isPlaying: false});
   }
 
   componentDidUpdate() {
     const {isPlaying} = this.state;
 
+    const audio = this.audioRef.current;
+
     if (isPlaying) {
-      this.audio.play();
+      audio.play();
     } else {
-      this.audio.pause();
+      audio.pause();
     }
   }
 
   componentWillUnmount() {
-    this.audio.oncanplaythrough = null;
-    this.audio.onpause = null;
-    this.audio.src = ``;
-    this.audio = null;
+    const audio = this.audioRef.current;
+
+    audio.oncanplaythrough = null;
+    audio.onpause = null;
+    audio.src = ``;
   }
 
   onPlayButtonClick() {
@@ -60,7 +65,7 @@ class AudioPlayer extends PureComponent {
         />
 
         <div className="track__status">
-          <audio/>
+          <audio ref={this.audioRef}/>
         </div>
       </>
     );

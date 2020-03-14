@@ -27,10 +27,13 @@ const question = {
 
 it(`Компонент GuessArtistScreen рендерится корректно`, () => {
   const tree = renderer
-    .create(<GuessArtistScreen
-      question={question}
-      onAnswer={() => {}}
-    />)
+    .create(
+        <GuessArtistScreen
+          question={question}
+          onAnswer={() => {}}
+        />,
+        {createNodeMock: () => ({})}
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
