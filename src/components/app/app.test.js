@@ -1,7 +1,7 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
 
-import App from './app.jsx';
+import {App} from './app.jsx';
 
 const questions = [
   {
@@ -49,14 +49,55 @@ const questions = [
   },
 ];
 
+describe(`Компонент App рендерится корректно`, () => {
+  it(`Приветственный экран рендерится корректно`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorsCount={3}
+            questions={questions}
+            step={-1}
+            onStartGameButtonClick={() => {}}
+            onGameQuestionAnswer={() => {}}
+          />
+      )
+      .toJSON();
 
-it(`Компонент App должен отрендериться корректно`, () => {
-  const tree = renderer
-    .create(<App
-      errorsCount={3}
-      questions={questions}
-    />)
-    .toJSON();
+    expect(tree).toMatchSnapshot();
+  });
 
-  expect(tree).toMatchSnapshot();
+  it(`Экран «Угадай исполнителя» рендерится корректно`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorsCount={3}
+            questions={questions}
+            step={0}
+            onStartGameButtonClick={() => {}}
+            onGameQuestionAnswer={() => {}}
+          />,
+          {createNodeMock: () => ({})}
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
+
+  it(`Экран «Угадай жанр» рендерится корректно`, () => {
+    const tree = renderer
+      .create(
+          <App
+            errorsCount={3}
+            questions={questions}
+            step={1}
+            onStartGameButtonClick={() => {}}
+            onGameQuestionAnswer={() => {}}
+          />,
+          {createNodeMock: () => ({})}
+      )
+      .toJSON();
+
+    expect(tree).toMatchSnapshot();
+  });
 });
+
