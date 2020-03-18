@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Компонент «GamerErrors» рендерится корректно Если игрок не совершил ошибок 1`] = `null`;
+
+exports[`Компонент «GamerErrors» рендерится корректно Если игрок совершил 3 ошибки 1`] = `
+<div
+  className="game__mistakes"
+>
+  <div
+    className="wrong"
+  />
+  <div
+    className="wrong"
+  />
+  <div
+    className="wrong"
+  />
+</div>
+`;
