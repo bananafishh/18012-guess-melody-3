@@ -74,25 +74,67 @@ describe(`Редьюсер работает корректно`, () => {
     expect(reducer({
       errorsCount: 0,
       step: -1,
+      errorsCountMax: 3,
+      questions,
     }, {
       type: ActionType.INCREMENT_ERRORS_COUNT,
       payload: 1,
     })).toEqual({
       errorsCount: 1,
       step: -1,
+      errorsCountMax: 3,
+      questions,
+    });
+  });
+
+  it(`Если лимит возможных ошибок исчерпан, редьюсер возвращает игрока на приветственный экран`, () => {
+    expect(reducer({
+      errorsCount: 2,
+      step: -1,
+      errorsCountMax: 3,
+      questions,
+    }, {
+      type: ActionType.INCREMENT_ERRORS_COUNT,
+      payload: 1,
+    })).toEqual({
+      errorsCount: 0,
+      step: -1,
+      errorsCountMax: 3,
+      questions,
     });
   });
 
   it(`Редьюсер увеличивает шаг игры на переданное значение`, () => {
     expect(reducer({
       errorsCount: 0,
+      errorsCountMax: 3,
       step: -1,
+      questions,
     }, {
       type: ActionType.INCREMENT_STEP,
       payload: 1,
     })).toEqual({
       errorsCount: 0,
+      errorsCountMax: 3,
       step: 0,
+      questions,
+    });
+  });
+
+  it(`Если вопросов больше нет, редьюсер возвращает игрока на приветственный экран`, () => {
+    expect(reducer({
+      errorsCount: 0,
+      errorsCountMax: 3,
+      step: 1,
+      questions,
+    }, {
+      type: ActionType.INCREMENT_STEP,
+      payload: 1,
+    })).toEqual({
+      errorsCount: 0,
+      errorsCountMax: 3,
+      step: -1,
+      questions,
     });
   });
 });
