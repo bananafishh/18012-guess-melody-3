@@ -2,7 +2,7 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 
 import {GameType} from '../../constants.js';
-import GameScreen from './game-screen.jsx';
+import {GameScreen} from './game-screen.jsx';
 
 const children = <div className="children-component" />;
 
@@ -10,7 +10,10 @@ describe(`Компонент «GameScreen» рендерится коррект�
   it(`Для игрового экрана «Угадай исполнителя»`, () => {
     const tree = renderer
       .create(
-          <GameScreen type={GameType.GUESS_ARTIST}>
+          <GameScreen
+            type={GameType.GUESS_ARTIST}
+            errorsCount={3}
+          >
             {children}
           </GameScreen>
       )
@@ -22,7 +25,10 @@ describe(`Компонент «GameScreen» рендерится коррект�
   it(`Для игрового экрана «Угадай жанр»`, () => {
     const tree = renderer
       .create(
-          <GameScreen type={GameType.GUESS_GENRE}>
+          <GameScreen
+            type={GameType.GUESS_GENRE}
+            errorsCount={3}
+          >
             {children}
           </GameScreen>
       )
