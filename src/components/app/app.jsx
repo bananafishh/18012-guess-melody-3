@@ -18,7 +18,7 @@ const GuessGenreScreenWrapped = withActivePlayer(GuessGenreScreen);
 class App extends PureComponent {
   showGameScreen() {
     const {
-      errorsCount,
+      errorsCountMax,
       questions,
       step,
       onStartGameButtonClick,
@@ -30,7 +30,7 @@ class App extends PureComponent {
     if (step === -1 || step >= questions.length) {
       return (
         <WelcomeScreen
-          errorsCount={errorsCount}
+          errorsCountMax={errorsCountMax}
           onStartGameButtonClick={onStartGameButtonClick}
         />
       );
@@ -100,7 +100,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  errorsCountMax: PropTypes.number.isRequired,
   questions: PropTypes.array.isRequired,
   step: PropTypes.number.isRequired,
   onStartGameButtonClick: PropTypes.func.isRequired,
@@ -109,6 +109,8 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   step: state.step,
+  errorsCountMax: state.errorsCountMax,
+  questions: state.questions,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -116,8 +118,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.incrementStep());
   },
   onGameQuestionAnswer(question, answer) {
-    dispatch(ActionCreator.incrementStep());
     dispatch(ActionCreator.incrementErrorsCount(question, answer));
+    dispatch(ActionCreator.incrementStep());
   },
 });
 

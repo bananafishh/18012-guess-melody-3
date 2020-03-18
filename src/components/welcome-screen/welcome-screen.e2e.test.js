@@ -13,7 +13,7 @@ it(`При клике по кнопке запуска игры должен б�
 
   const welcomeScreen = shallow(
       <WelcomeScreen
-        errorsCount={ERRORS_COUNT_MAX}
+        errorsCountMax={ERRORS_COUNT_MAX}
         onStartGameButtonClick={handleStartGameButtonClick}
       />
   );

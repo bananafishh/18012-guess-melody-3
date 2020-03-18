@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const WelcomeScreen = (props) => {
   const {
-    errorsCount,
+    errorsCountMax,
     onStartGameButtonClick
   } = props;
 
@@ -26,7 +26,7 @@ const WelcomeScreen = (props) => {
 
       <ul className="welcome__rules-list">
         <li>Нужно ответить на все вопросы.</li>
-        <li>Можно допустить {errorsCount} ошибки.</li>
+        <li>Можно допустить {errorsCountMax} ошибки.</li>
       </ul>
 
       <p className="welcome__text">Удачи!</p>
@@ -35,7 +35,7 @@ const WelcomeScreen = (props) => {
 };
 
 WelcomeScreen.propTypes = {
-  errorsCount: PropTypes.number.isRequired,
+  errorsCountMax: PropTypes.number.isRequired,
   onStartGameButtonClick: PropTypes.func.isRequired
 };
 

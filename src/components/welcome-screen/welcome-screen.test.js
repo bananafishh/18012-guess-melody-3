@@ -9,7 +9,7 @@ it(`Компонент WelcomeScreen должен отрендериться к�
   const tree = renderer
     .create(
         <WelcomeScreen
-          errorsCount={ERRORS_COUNT_MAX}
+          errorsCountMax={ERRORS_COUNT_MAX}
           onStartGameButtonClick={() => {}}
         />
     )

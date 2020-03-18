@@ -63,7 +63,7 @@ describe(`Компонент App рендерится корректно`, () =>
       .create(
           <Provider store={store}>
             <App
-              errorsCount={3}
+              errorsCountMax={3}
               questions={questions}
               step={-1}
               onStartGameButtonClick={() => {}}
@@ -85,7 +85,7 @@ describe(`Компонент App рендерится корректно`, () =>
       .create(
           <Provider store={store}>
             <App
-              errorsCount={3}
+              errorsCountMax={3}
               questions={questions}
               step={0}
               onStartGameButtonClick={() => {}}
@@ -108,7 +108,7 @@ describe(`Компонент App рендерится корректно`, () =>
       .create(
           <Provider store={store}>
             <App
-              errorsCount={3}
+              errorsCountMax={3}
               questions={questions}
               step={1}
               onStartGameButtonClick={() => {}}
