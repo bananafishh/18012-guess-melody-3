@@ -115,8 +115,9 @@ const mapDispatchToProps = (dispatch) => ({
   onStartGameButtonClick() {
     dispatch(ActionCreator.incrementStep());
   },
-  onGameQuestionAnswer() {
+  onGameQuestionAnswer(question, answer) {
     dispatch(ActionCreator.incrementStep());
+    dispatch(ActionCreator.incrementErrorsCount(question, answer));
   },
 });
 

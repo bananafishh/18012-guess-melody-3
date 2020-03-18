@@ -1,7 +1,11 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
+import configureStore from 'redux-mock-store';
 
 import {App} from './app.jsx';
+
+const mockStore = configureStore([]);
 
 const questions = [
   {
@@ -51,15 +55,21 @@ const questions = [
 
 describe(`Компонент App рендерится корректно`, () => {
   it(`Приветственный экран рендерится корректно`, () => {
+    const store = mockStore({
+      errorsCount: 0,
+    });
+
     const tree = renderer
       .create(
-          <App
-            errorsCount={3}
-            questions={questions}
-            step={-1}
-            onStartGameButtonClick={() => {}}
-            onGameQuestionAnswer={() => {}}
-          />
+          <Provider store={store}>
+            <App
+              errorsCount={3}
+              questions={questions}
+              step={-1}
+              onStartGameButtonClick={() => {}}
+              onGameQuestionAnswer={() => {}}
+            />
+          </Provider>
       )
       .toJSON();
 
@@ -67,15 +77,21 @@ describe(`Компонент App рендерится корректно`, () =>
   });
 
   it(`Экран «Угадай исполнителя» рендерится корректно`, () => {
+    const store = mockStore({
+      errorsCount: 3,
+    });
+
     const tree = renderer
       .create(
-          <App
-            errorsCount={3}
-            questions={questions}
-            step={0}
-            onStartGameButtonClick={() => {}}
-            onGameQuestionAnswer={() => {}}
-          />,
+          <Provider store={store}>
+            <App
+              errorsCount={3}
+              questions={questions}
+              step={0}
+              onStartGameButtonClick={() => {}}
+              onGameQuestionAnswer={() => {}}
+            />
+          </Provider>,
           {createNodeMock: () => ({})}
       )
       .toJSON();
@@ -84,15 +100,21 @@ describe(`Компонент App рендерится корректно`, () =>
   });
 
   it(`Экран «Угадай жанр» рендерится корректно`, () => {
+    const store = mockStore({
+      errorsCount: 3,
+    });
+
     const tree = renderer
       .create(
-          <App
-            errorsCount={3}
-            questions={questions}
-            step={1}
-            onStartGameButtonClick={() => {}}
-            onGameQuestionAnswer={() => {}}
-          />,
+          <Provider store={store}>
+            <App
+              errorsCount={3}
+              questions={questions}
+              step={1}
+              onStartGameButtonClick={() => {}}
+              onGameQuestionAnswer={() => {}}
+            />
+          </Provider>,
           {createNodeMock: () => ({})}
       )
       .toJSON();
